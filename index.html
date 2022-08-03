@@ -21,7 +21,7 @@
     </header>
     <main>
         <button type="button" class="button blue" id="entradaServico">Entrada de OS</button>
-        <table class="records">
+        <table id="tableService" class="records">
             <thead>
                 <th>Número</th>
                 <th>Cliente</th>
@@ -31,7 +31,7 @@
                 <th>Ação</th>
             </thead>
             <tbody>
-                <tr>
+                <!-- <tr>
                     <td>34995</td>
                     <td>Delta Print</td>
                     <td>Arnaldo</td>
@@ -74,7 +74,7 @@
                         <button type="button" class="button green">Editar</button>
                         <button type="button" class="button red">Excluir</button>
                     </td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
         <div class="modal" id="modal">
@@ -83,22 +83,22 @@
                     <h2>Nova Ordem de Serviço</h2>
                     <span class="modal-close" id="modalClose">&#10006;</span>
                 </header>
-                <form class="modal-form">
-                    <input type="text" class="modal-field" placeholder="Número O.S.">
-                    <input type="text" class="modal-field" placeholder="Nome da Empresa ou Cliente">
-                    <input type="text" class="modal-field" placeholder="Nome do Vendedor">
-                    <input type="text" class="modal-field" placeholder="Tipo do Serviço">
-                    <select class="modal-field" name="status">
-                        <option value="atual" selected>Status Atual</option>
-                        <option value="tiff">TIFF</option>
-                        <option value="prova">PROVA</option>
-                        <option value="aprovacao">APROVAÇÂO</option>
-                        <option value="producao">PRODUÇÃO</option>
+                <form id="form" class="modal-form">
+                    <input id="numero" type="text" class="modal-field" placeholder="Número O.S." required>
+                    <input id="cliente" type="text" class="modal-field" placeholder="Nome da Empresa ou Cliente" required>
+                    <input id="vendedor" type="text" class="modal-field" placeholder="Nome do Vendedor" required>
+                    <input id="tipo" type="text" class="modal-field" placeholder="Tipo do Serviço" required>
+                    <select id="status" class="modal-select" name="status">
+                        <option value="ATUAL" selected>Status Atual</option>
+                        <option value="TIFF">TIFF</option>
+                        <option value="PROVA">PROVA</option>
+                        <option value="APROVAÇÃO">APROVAÇÂO</option>
+                        <option value="PRODUÇÃO">PRODUÇÃO</option>
                     </select>
                 </form>
                 <footer class="modal-footer">
-                    <button class="button green">Salvar</button>
-                    <button class="button blue">Cancelar</button>
+                    <button id="salvar"  class="button green">Salvar</button>
+                    <button id="cancelar" class="button blue">Cancelar</button>
                 </footer>
             </div>
         </div>

@@ -23,5 +23,5 @@
 }
 
 .records tr:hover{
-    background-color: var(--primary-color);
+    background-color: rgba(36, 144, 163, 0.1);
 }
