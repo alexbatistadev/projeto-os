@@ -51,13 +51,20 @@ const saveService = () => {
             tipo: document.getElementById('tipo').value,
             status: document.getElementById('status').value,
         }
-        createService(service)
-        updateTable()
-        closeModal()
+        const index = document.getElementById('numero').dataset.index
+        if (index == 'new') {
+            createService(service)
+            updateTable()
+            closeModal()
+        } else {
+            updateService(index, service)
+            updateTable()
+            closeModal()
+        }
     }
 }
 
-const createRow = (service) => {
+const createRow = (service, index) => {
     const newRow = document.createElement('tr')
     newRow.innerHTML = `
         <td>${service.numero}</td>
@@ -66,8 +73,8 @@ const createRow = (service) => {
         <td>${service.tipo}</td>
         <td>${service.status}</td>
         <td>
-            <button type="button" class="button green" id="edit">Editar</button>
-            <button type="button" class="button red" id="delete">Excluir</button>
+            <button type="button" class="button green" id="edit-${index}">Editar</button>
+            <button type="button" class="button red" id="delete-${index}">Excluir</button>
         </td>    
     `
     document.querySelector('#tableService>tbody').appendChild(newRow)
@@ -84,9 +91,37 @@ const updateTable = () => {
     dbService.forEach(createRow)
 }
 
+const fillFields = (service) => {
+    document.getElementById('numero').value = service.numero
+    document.getElementById('cliente').value = service.cliente
+    document.getElementById('vendedor').value = service.vendedor
+    document.getElementById('tipo').value = service.tipo
+    document.getElementById('status').value = service.status
+    document.getElementById('numero').dataset.index = service.index 
+}
+
+const editService = (index) => {
+    const service = readService()[index]
+    service.index = index
+    fillFields(service)
+    openModal()
+}
+
 const editDelete = (event) => {
     if (event.target.type == 'button') {
-        console.log (event.target.id) // "PAREI AQUI - FALTANDO CRIAR A AÇÃO DO EDIT E DELETE"
+        const [action, index] = event.target.id.split('-')
+
+        if (action == 'edit') {
+            editService(index)
+        } else {
+            const service = readService()[index]
+            const response = confirm (`Deseja realmente excluir a O.S nº: ${service.numero}`)
+            if (response) {
+                deleteService(index)
+                updateTable()
+            }
+
+        }
     }
 }
 
