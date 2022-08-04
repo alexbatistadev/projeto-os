@@ -1,8 +1,8 @@
 # projeto-os
 
-> Status: Finished
+> Status: Finished ✨
 
-## Technology used to create CRUD:
+## Technology used to create CRUD: 💻
 
 - HTML
 - CSS
